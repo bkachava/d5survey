@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Survey Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron" style="text-align: center">
+      <h1>Encuesta Nacional de Hogares</h1>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <h2>Contesta las siguientes preguntas!</h2>
+        <form method="POST" action="/send" role="form", name="petform">
+          <div class="form-group">
+            <label for="inputName">¿Cual es tu nombre?</label>
+            <input type="text" class="form-control" id="inputName" name="name" placeholder="Nombre">
+          </div>
+		  <div class="form-group">
+			<label for="inputSex">¿Cual es tu sexo?</label>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optsexo" checked>Opcion A
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optsexo">Opcion B
+				</label>
+			</div>
+		  </div>
+          <input type="submit" value="submit" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
