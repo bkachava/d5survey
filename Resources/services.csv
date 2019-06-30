@@ -1,0 +1,26 @@
+level,item,total,yes_cnt,no_cnt
+all,Pay TV services,100,46,54
+all,Cel phone,100,88,12
+all,Fixed-line phone,100,40,60
+all,Internet,100,43,57
+all,Computer,100,36,64
+low,Pay TV services,100,29,71
+low,Cel phone,100,73,27
+low,Fixed-line phone,100,11,89
+low,Internet,100,7,93
+low,Computer,100,9,91
+mdlow,Pay TV services,100,43,57
+mdlow,Cel phone,100,89,11
+mdlow,Fixed-line phone,100,34,66
+mdlow,Internet,100,38,62
+mdlow,Computer,100,31,69
+mdhigh,Pay TV services,100,57,43
+mdhigh,Cel phone,100,94,6
+mdhigh,Fixed-line phone,100,65,35
+mdhigh,Internet,100,70,30
+mdhigh,Computer,100,58,42
+high,Pay TV services,100,72,28
+high,Cel phone,100,97,3
+high,Fixed-line phone,100,74,26
+high,Internet,100,82,18
+high,Computer,100,76,24
