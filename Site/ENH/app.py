@@ -26,7 +26,7 @@ Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 Services = Base.classes.services
-
+Rent = Base.classes.rent
 
 # Route to render index.html 
 @app.route("/")
@@ -68,6 +68,35 @@ def services(level):
 
     return jsonify(serv_list)
 
+# Query the database and send the jsonified results
+@app.route("/rentByAge")
+def rentByAge():
+    """Return the rent by age."""
+    sel = [
+        Rent.folioviv,
+        Rent.tenencia,
+        Rent.pago_renta,
+        Rent.est_socio,
+        Rent.edad,
+        Rent.parentesco
+   ]
+    # Query the table with filter
+    results = db.session.query(*sel).all()
+
+    # Create a  list entry for each row
+    rent_list = []
+    for result in results:
+        rent_data = {
+            "folioviv" : result[0],
+            "tenencia" : result[1],
+            "pago_renta" : result[2],
+            "est_socio" : result[3],
+            "edad" : result[4],
+            "parentesco" : result[5]
+        }
+        rent_list.append(rent_data)
+
+    return jsonify(rent_list)
 
 # Init app
 if __name__ == "__main__":
