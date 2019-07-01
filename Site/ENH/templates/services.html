@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>National Household Survey 2017</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="text-center">National Household Survey 2017</h2>
+   <!-- Graph Services (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  -->
+    <div class="row">
+       <div class="col-md-12">
+           <h4 class="text-center text-info">Megalopolis Services by Socioeconomic Level</h4>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-6 text-center"><p></p><p></p>
+          <a class="btn btn-outline-primary" href="#" role="button" value="low" onclick="updateServices('all')">All</a>
+          <a class="btn btn-outline-warning" href="#" role="button" value="low" onclick="updateServices('low')">Low</a>
+          <a class="btn btn-outline-info" href="#" role="button" onclick="updateServices('mdlow')">Medium low</a>
+          <a class="btn btn-outline-secondary" href="#" role="button" onclick="updateServices('mdhigh')">Medium high</a>          
+          <a class="btn btn-outline-success" href="#" role="button" onclick="updateServices('high')">High</a>
+      </div>
+      <div class="col-md-6 text-center"><p id="tot"></p>
+      </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-6">  
+        <div id="percServ"></div>
+      </div>
+      <div class="col-md-5">
+        <div id="stateServ">
+        </div>
+     </div>
+    </div>
+    <div class="row">        
+        <div class="col-md-6">  
+          <a href="/servicesByState/c">Get data</a>
+      </div>
+     </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
+
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>  -->
+  <script src="{{ url_for('static', filename='js/services.js') }}"></script>
+  
+</body>
+
+</html>

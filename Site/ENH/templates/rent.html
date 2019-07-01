@@ -13,28 +13,24 @@
 
 <body>
   <div class="container">
-    <div class="jumbotron" style="text-align: center"> 
-      <h1>National Household Survey 2017</h1>
-      <a class="btn btn-primary" href="/send" role="button">Llena la encuesta</a>
-    </div>
-    <div id="clockdate">
-      <div class="clockdate-wrapper">
-        <div id="clock"></div>
-        <div id="date"></div>
-      </div>
-    </div>
+    <h2 class="text-center">National Household Survey 2017</h2>
+
+   <!-- Graph Services (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  -->
     <div class="row">
-        <div class="col-md-8">
-          <a href="/service">Services by Socioeconomic Level</a>
-          <br> 
-          <a href="/rent">Rent by Age and Socioeconomic Level</a>
-        </div>      
+      <div class="col-md-12 text-center">
+        <h4 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h4>
+        <div id="chart">
+          <svg></svg>
+        </div>
+      </div>
     </div>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
+  <script src="{{ url_for('static', filename='js/scatter.js') }}"></script>
 
 </body>
-
 </html>
