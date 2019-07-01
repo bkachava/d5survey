@@ -110,7 +110,7 @@ def stateservices(level):
 
 
 # Query the database and send the jsonified results
-@app.route("/rentByAge")
+@app.route("/rent/ByAge")
 def rentByAge():
     """Return the rent by age."""
     sel = [

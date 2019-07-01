@@ -52,7 +52,7 @@ nv.addGraph(function() {
         return d3.scale.ordinal().range(Colors);
     };
      // load data
-     d3.json("/rentByAge", function(error, data) {  
+     d3.json("/rent/ByAge", function(error, data) {  
         var ageMax = d3.max(data, function(d) { return d.edad; });
 
     var lineChart = nv.models.lineChart()
@@ -74,7 +74,7 @@ nv.addGraph(function() {
     chart.xAxis.tickFormat(d3.format(''));
     chart.yAxis.tickFormat(d3.format('$,'));
     chart.xAxis.tickValues(['10', '20', '30', '40', '50', '60', '70', '80', '90' ]);
-    chart.yAxis.tickValues(['2000', '4000', '6000', '8000', '10000', '15000', '30000', '40000', '50000' ]);
+    chart.yAxis.tickValues(['2000', '4000', '6000', '8000', '10000', '20000', '30000', '40000', '50000' ]);
     chart.xAxis.axisLabel('Age');
     chart.yAxis.axisLabel('Rent ($)');
 

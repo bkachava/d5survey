@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
@@ -19,11 +20,21 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <h4 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h4>
+        <h3>Scatter Representation</h3>
         <div id="chart">
           <svg></svg>
         </div>
+        <h3>Boxplot grouped Representation</h3>
+        <div class="boxPlot" id="boxPlot">
+        </div>
       </div>
     </div>
+    <div class="row">        
+      <div class="col-md-12">  
+        <a href="/rent/ByAge">Get data</a>
+    </div>
+   </div>
+
   </div>
 
   
@@ -31,6 +42,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
   <script src="{{ url_for('static', filename='js/scatter.js') }}"></script>
-
+  <script src="{{ url_for('static', filename='js/boxPlot.js') }}"></script>
 </body>
 </html>

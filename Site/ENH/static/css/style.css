@@ -39,9 +39,6 @@
     stroke: #000;
     shape-rendering: crispEdges;
   }
-svg {
-    background: white;
-  }
 .label {
     font-size: 8px sans-serif;
     color: black;
