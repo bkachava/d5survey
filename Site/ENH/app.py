@@ -26,12 +26,23 @@ Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 Services = Base.classes.services
+Stservices = Base.classes.stservices
 Rent = Base.classes.rent
 
 # Route to render index.html 
 @app.route("/")
 def home():
     return render_template("index.html")
+
+# Route to render services.html 
+@app.route("/service")
+def servpage():
+    return render_template("services.html")
+
+# Route to render index.html 
+@app.route("/rent")
+def rentpage():
+    return render_template("rent.html")
 
 # Query the database and send the jsonified results
 @app.route("/send", methods=["GET", "POST"])
@@ -67,6 +78,36 @@ def services(level):
         serv_list.append(service_data)
 
     return jsonify(serv_list)
+
+
+@app.route("/servicesByState/<level>")
+def stateservices(level):
+    """Return the services for a given socioeconomic level."""
+    sel = [
+        Stservices.level,
+        Stservices.services,
+        Stservices.state,
+        Stservices.yes_cnt
+       ]
+    # Query the table with filter
+    if level == 'c':
+        results = db.session.query(*sel).all()
+    else:
+        results = db.session.query(*sel).filter(Stservices.level == level).all()
+
+    # Create a  list entry for each row
+    serv_list = []
+    for result in results:
+        service_data = {
+            "Level" : result[0],
+            "Services" : result[1],
+            "State" : result[2],
+            "Yes Counter" : result[3]
+        }
+        serv_list.append(service_data)
+
+    return jsonify(serv_list)
+
 
 # Query the database and send the jsonified results
 @app.route("/rentByAge")
