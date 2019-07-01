@@ -40,11 +40,12 @@
     shape-rendering: crispEdges;
   }
 svg {
-    background: whitesmoke;
+    background: white;
   }
 .label {
     font-size: 8px sans-serif;
     color: black;
+    font-weight: bolder;
 }
 #chart svg {
   height: 400px;
