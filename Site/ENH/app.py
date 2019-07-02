@@ -34,30 +34,30 @@ Rent = Base.classes.rent
 def home():
     return render_template("index.html")
 
+
 # Route to render services.html 
 @app.route("/service")
 def servpage():
     return render_template("services.html")
+
 
 # Route to render rent.html 
 @app.route("/rent")
 def rentpage():
     return render_template("rent.html")
 
+
 # Route to render map.html 
 @app.route("/map")
-def mapPage():
+def mappage():
     return render_template("map.html")
 
-# Query the database and send the jsonified results
-@app.route("/send", methods=["GET", "POST"])
-def send():
-    if request.method == "POST":
-        name = request.form["name"]
-        optsexo = request.form["optsexo"]
-        return redirect("/", code=302)
 
-    return render_template("form.html")
+# Route to render literacy.html 
+@app.route("/literacy")
+def litpage():
+    return render_template("literacy.html")
+
 
 @app.route("/services/<level>")
 def services(level):
@@ -143,6 +143,7 @@ def rentByAge():
         rent_list.append(rent_data)
 
     return jsonify(rent_list)
+
 
 # Init app
 if __name__ == "__main__":

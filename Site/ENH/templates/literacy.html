@@ -24,9 +24,9 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="/">Home</a</li>
           <li class="nav-item"><a class="nav-link" href="/map">Map</a</li>
-          <li class="nav-item active"><a class="nav-link" href="/rent">Rent</a></li>
+          <li class="nav-item"><a class="nav-link" href="/rent">Rent</a></li>
           <li class="nav-item"><a class="nav-link" href="/service">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="/literacy">Literacy</a></li>
+          <li class="nav-item active"><a class="nav-link" href="/literacy">Literacy</a></li>
         </ul>
       </div>
     </nav>
@@ -34,27 +34,14 @@
     <h3 class="text-center">National Household Survey 2017</h3>
     <div class="row">
       <div class="col-md-12 text-center">
-        <p class="text-right"><a href="/rent/ByAge">Get data</a></p>
-        <h5 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h5>
-        <h6>Scatter Representation</h6>
-        <div id="chart">
-          <svg></svg>
-        </div>
+        <p class="text-right"><a href="/">Get data</a></p>
+        <h5 class="text-center text-info">Megalopolis Literacy by Gender</h5>
+        <div id="chart"></div>
       </div>
-     </div>
-     <div class="row">
-       <div class="col-md-12 text-center">
-         <p></p><p></p>
-         <h5 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h5>
-         <h6>Boxplot Grouped Representation</h6>
-         <div class="boxPlot" id="boxPlot"></div>
-       </div>
      </div>
   </div>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
-  <script src="{{ url_for('static', filename='js/scatter.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/boxPlot.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

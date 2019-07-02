@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>National Household Survey 2017</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" media="screen">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
 </head>
-
 <body>
   <div class="container">
-    <h2 class="text-center">National Household Survey 2017</h2>
-   <!-- Graph Services (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+      <a class="navbar-brand" href="/"> &nbsp;&nbsp;d5Survey&nbsp;&nbsp;</a>  
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a</li>
+          <li class="nav-item"><a class="nav-link" href="/map">Map</a</li>
+          <li class="nav-item"><a class="nav-link" href="/rent">Rent</a></li>
+          <li class="nav-item active"><a class="nav-link" href="/service">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/literacy">Literacy</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p></p><p></p>
+    <h3 class="text-center">National Household Survey 2017</h3>
     <div class="row">
        <div class="col-md-12">
-           <h4 class="text-center text-info">Megalopolis Services by Socioeconomic Level</h4>
+          <div class="text-right"><a href="/servicesByState/c">Get data</a></div>
+           <h5 class="text-center text-info">Megalopolis Services by Socioeconomic Level</h5><p></p>
        </div>
     </div>
     <div class="row">
@@ -40,20 +57,9 @@
         </div>
      </div>
     </div>
-    <div class="row">        
-        <div class="col-md-6">  
-          <a href="/servicesByState/c">Get data</a>
-      </div>
-     </div>
-
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
-
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>  -->
   <script src="{{ url_for('static', filename='js/services.js') }}"></script>
-  
 </body>
-
 </html>
