@@ -26,12 +26,23 @@ Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 Services = Base.classes.services
-
+Stservices = Base.classes.stservices
+Rent = Base.classes.rent
 
 # Route to render index.html 
 @app.route("/")
 def home():
     return render_template("index.html")
+
+# Route to render services.html 
+@app.route("/service")
+def servpage():
+    return render_template("services.html")
+
+# Route to render index.html 
+@app.route("/rent")
+def rentpage():
+    return render_template("rent.html")
 
 # Query the database and send the jsonified results
 @app.route("/send", methods=["GET", "POST"])
@@ -68,6 +79,65 @@ def services(level):
 
     return jsonify(serv_list)
 
+
+@app.route("/servicesByState/<level>")
+def stateservices(level):
+    """Return the services for a given socioeconomic level."""
+    sel = [
+        Stservices.level,
+        Stservices.services,
+        Stservices.state,
+        Stservices.yes_cnt
+       ]
+    # Query the table with filter
+    if level == 'c':
+        results = db.session.query(*sel).all()
+    else:
+        results = db.session.query(*sel).filter(Stservices.level == level).all()
+
+    # Create a  list entry for each row
+    serv_list = []
+    for result in results:
+        service_data = {
+            "Level" : result[0],
+            "Services" : result[1],
+            "State" : result[2],
+            "Yes Counter" : result[3]
+        }
+        serv_list.append(service_data)
+
+    return jsonify(serv_list)
+
+
+# Query the database and send the jsonified results
+@app.route("/rent/ByAge")
+def rentByAge():
+    """Return the rent by age."""
+    sel = [
+        Rent.folioviv,
+        Rent.tenencia,
+        Rent.pago_renta,
+        Rent.est_socio,
+        Rent.edad,
+        Rent.parentesco
+   ]
+    # Query the table with filter
+    results = db.session.query(*sel).all()
+
+    # Create a  list entry for each row
+    rent_list = []
+    for result in results:
+        rent_data = {
+            "folioviv" : result[0],
+            "tenencia" : result[1],
+            "pago_renta" : result[2],
+            "est_socio" : result[3],
+            "edad" : result[4],
+            "parentesco" : result[5]
+        }
+        rent_list.append(rent_data)
+
+    return jsonify(rent_list)
 
 # Init app
 if __name__ == "__main__":

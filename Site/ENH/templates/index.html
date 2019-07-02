@@ -8,12 +8,13 @@
     <title>National Household Survey 2017</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
 </head>
 
 <body>
   <div class="container">
-    <div class="jumbotron" style="text-align: center">
-      <h1>Encuesta Nacional de Hogares 2017</h1>
+    <div class="jumbotron" style="text-align: center"> 
+      <h1>National Household Survey 2017</h1>
       <a class="btn btn-primary" href="/send" role="button">Llena la encuesta</a>
     </div>
     <div id="clockdate">
@@ -23,34 +24,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <h2>Encuesta!</h2>
-        <div id="plot"></div>
-      </div>
-    </div>
-
-   <!-- Graph Services (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  -->
-    <div class="row border border-secondary">
         <div class="col-md-8">
-        <p class="font-weight-bold">Megalopolis Services by Socioeconomic Level</p>
-        <p></p>
-        <p>
-          <a class="btn btn-outline-primary" href="#" role="button" value="low" onclick="updateServices('all')">All</a>
-          <a class="btn btn-outline-warning" href="#" role="button" value="low" onclick="updateServices('low')">Low</a>
-          <a class="btn btn-outline-info" href="#" role="button" onclick="updateServices('mdlow')">Medium low</a>
-          <a class="btn btn-outline-secondary" href="#" role="button" onclick="updateServices('mdhigh')">Medium high</a>          
-          <a class="btn btn-outline-success" href="#" role="button" onclick="updateServices('high')">High</a>
-        </p>
-        <div id="graph2"></div>
-      </div>  
+          <a href="/service">Services by Socioeconomic Level</a>
+          <br> 
+          <a href="/rent">Rent by Age and Socioeconomic Level</a>
+        </div>      
     </div>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  
-  <script src="{{ url_for('static', filename='js/services.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
 </body>
 
 </html>
