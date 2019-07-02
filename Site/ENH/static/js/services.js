@@ -274,7 +274,7 @@ function updateLabels(level) {
     // Use `.html("") to clear any existing metadata
     selection.html("");
     // Use d3 to append new tags for each value
-    selection.append("span").text("Houses - Total sample: ").classed("text-primary font-weight-bold", true);
+    selection.append("span").text("Living spaces - Total sample: ").classed("text-primary font-weight-bold", true);
     selection.append("span").text(houses[0]).classed("text-info font-weight-bold", true);
     selection.append("p");
     selection.append("span").text("Ciudad de México: ").classed("text-muted font-weight-bold", true);
@@ -283,8 +283,7 @@ function updateLabels(level) {
     selection.append("span").text(houses[2]).classed("text-info font-weight-bold", true);
     selection.append("span").text(" - México: ").classed("text-muted font-weight-bold", true);
     selection.append("span").text(houses[3]).classed("text-info font-weight-bold", true);
-    selection.append("p");
-    selection.append("span").text("Morelos: ").classed("text-muted font-weight-bold", true);
+    selection.append("span").text(" - Morelos: ").classed("text-muted font-weight-bold", true);
     selection.append("span").text(houses[4]).classed("text-info font-weight-bold", true);
     selection.append("span").text(" - Puebla: ").classed("text-muted font-weight-bold", true);
     selection.append("span").text(houses[5]).classed("text-info font-weight-bold", true);
@@ -292,7 +291,7 @@ function updateLabels(level) {
     selection.append("span").text(houses[6]).classed("text-info font-weight-bold", true);
     selection.append("span").text(" - Tlaxcala: ").classed("text-muted font-weight-bold", true);
     selection.append("span").text(houses[7]).classed("text-info font-weight-bold", true);
-
+    selection.append("p");
 }
 
 
