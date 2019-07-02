@@ -39,10 +39,15 @@ def home():
 def servpage():
     return render_template("services.html")
 
-# Route to render index.html 
+# Route to render rent.html 
 @app.route("/rent")
 def rentpage():
     return render_template("rent.html")
+
+# Route to render map.html 
+@app.route("/map")
+def mapPage():
+    return render_template("map.html")
 
 # Query the database and send the jsonified results
 @app.route("/send", methods=["GET", "POST"])
