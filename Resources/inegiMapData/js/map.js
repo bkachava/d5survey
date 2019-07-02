@@ -1,5 +1,8 @@
 //My Map:
 
+//----------------------------------------------------//
+// Create Map Layers
+//----------------------------------------------------//
 
 function Color(state) {
   if (state == "Estado de Mexico") {
@@ -9,21 +12,18 @@ function Color(state) {
   } else if (state == "Morelos") {
       return 'orange'
   } else if (state == "Puebla") {
-      return 'red'
+      return 'greenyellow'
   } else if (state == "Queretaro") {
-      return 'indigo'
+      return 'green'
   } else if (state == "Hidalgo") {
       return 'cyan'
   } else if (state == "Tlaxcala") {
-      return 'green'
+      return 'indigo'
   } else {
       return 'black'
   }
 };
 
-//----------------------------------------------------//
-// Create Map Layers
-//----------------------------------------------------//
   var highContrastMap = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
@@ -54,15 +54,15 @@ function Color(state) {
 
 
   var baseLayers = {
-      "High Contrast": highContrastMap,
       "Street": streetMap,
+      "High Contrast": highContrastMap,
       "Dark": darkMap,
       "Satellite": satellite
   };
 
   var map = L.map("mapa", {
     center: [19.58867, -98.56972],
-    zoom: 8,
+    zoom: 7,
     layers: [streetMap]
   });
 
@@ -76,7 +76,7 @@ function Color(state) {
           colorStates = ["Puebla", "Estado de Mexico", "Tlaxcala", "Queretaro", "Ciudad de Mexico", "Hidalgo", "Morelos"],
           labels = [];
 
-      div.innerHTML += "<h4 style='margin:4px'>Estados</h4>"
+      div.innerHTML += "<h4 style='margin:4px'>States</h4>"
 
       for (var i = 0; i < colorStates.length; i++) {
         div.innerHTML +=
@@ -86,19 +86,19 @@ function Color(state) {
 
       return div;
   };
-  legend.addTo(map);
-//Finished creating our Layers
+  legend.addTo(map); //Finished creating our Layers
 
 
 //----------------------------------------------------//
 // Add states to our map
 //----------------------------------------------------//
 //Let's draw our seven states with its unique styles!
+
 L.geoJson(cdmxjson, {
     style: function(feature) {
       return {
         color: "white",
-        fillColor: "pink",
+        fillColor: "hotpink",
         fillOpacity: 0.5,
         weight: 1.5
       };
@@ -142,7 +142,7 @@ L.geoJson(qtojson, {
     style: function(feature) {
       return {
         color: "white",
-        fillColor: "indigo",
+        fillColor: "green",
         fillOpacity: 0.5,
         weight: 1.5
       };
@@ -153,7 +153,7 @@ L.geoJson(tlaxjson, {
     style: function(feature) {
       return {
         color: "white",
-        fillColor: "green",
+        fillColor: "indigo",
         fillOpacity: 0.5,
         weight: 1.5
       };
@@ -164,7 +164,7 @@ L.geoJson(puejson, {
     style: function(feature) {
       return {
         color: "white",
-        fillColor: "red",
+        fillColor: "greenyellow",
         fillOpacity: 0.5,
         weight: 1.5
       };
@@ -175,18 +175,25 @@ L.geoJson(puejson, {
 //----------------------------------------------------//
 // Create a new marker cluster group
 //----------------------------------------------------//
-var markers = L.markerClusterGroup();
 
-//markers.addLayer(L.marker(19.58867, -98.56972));
+// Load coordinates data from map_mun_coordinates.csv
+d3.csv("map_mun_coordinates.csv", function(error, coord) {
+  
+  var markers = L.markerClusterGroup();
+  
+  // Log an error if one exists
+  if (error) return console.warn(error);
 
-markers.addLayer(L.marker([19.58867, -98.56972])
-.bindPopup("Test"));
+  // Cast the hours value to a number for each piece of tvData
+  coord.forEach(function(data) {
+    data.latitude = +data.latitude;
+    data.longitude = +data.longitude;
 
-markers.addLayer(L.marker([19.58867, -98.56972])
-.bindPopup("Test"));
+    //Fill our markers
+    markers.addLayer(L.marker([data.latitude, data.longitude])
+    .bindPopup(data.municipality_name));
 
-markers.addLayer(L.marker([19.58867, -98.56972])
-.bindPopup("Test"));
-
-// Add our marker cluster layer to the map
-map.addLayer(markers);
+    // Add our marker cluster layer to the map
+    map.addLayer(markers);
+  });
+});
