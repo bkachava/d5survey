@@ -5,7 +5,7 @@
 //----------------------------------------------------//
 
 function Color(state) {
-  if (state == "Estado de Mexico") {
+  if (state == "Mexico") {
       return 'blue'
   } else if (state == "Ciudad de Mexico") {
       return 'pink'
@@ -73,15 +73,15 @@ function Color(state) {
   legend.onAdd = function (mymap) {
 
       var div = L.DomUtil.create('div', 'info legend'),
-          colorStates = ["Puebla", "Estado de Mexico", "Tlaxcala", "Queretaro", "Ciudad de Mexico", "Hidalgo", "Morelos"],
+          colorStates = ["Ciudad de Mexico", "Hidalgo", "Mexico", "Morelos", "Puebla", "Queretaro", "Tlaxcala"],
           labels = [];
 
       div.innerHTML += "<h4 style='margin:4px'>States</h4>"
 
       for (var i = 0; i < colorStates.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + Color(colorStates[i]) + '"></i> ' +
-            colorStates[i] + (colorStates[i] ? '&ndash;' + '<br>' : '+');
+            '<i style="background:' + Color(colorStates[i]) + '"></i>' +
+            colorStates[i] + (colorStates[i] ? '<br>' : '+');
       }
 
       return div;
