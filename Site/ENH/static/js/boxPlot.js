@@ -44,7 +44,7 @@ d3.json("/rent/ByAge", function(error, data) {
       });
     // Group by status
     var low = { y: rent[0], x: age[0], name: 'Low', marker: {color: Colors[0]}, type: 'box' };
-    var medium = { y: rent[1], x: age[1], name: 'Medium', marker: {color: Colors[1]}, type: 'box' };
+    var medium = { y: rent[1], x: age[1], name: 'Medium low', marker: {color: Colors[1]}, type: 'box' };
     var mediumHigh = { y: rent[2], x: age[2], name: 'Medium high', marker: {color: Colors[2]}, type: 'box' };
     var high = { y: rent[3], x: age[3], name: 'High', marker: {color: Colors[3]}, type: 'box' };
     

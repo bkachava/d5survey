@@ -1,5 +1,5 @@
 // Global Variables
-var estatus = ['Low','Medium','Medium high','High'];
+var estatus = ['Low','Medium low','Medium high','High'];
 var Colors = ['#F39C12','#3498DB','#95a5a6','#008080'];
 
 // Create data to create the graph
