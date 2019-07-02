@@ -16,30 +16,30 @@ d3.json("/rent/ByAge", function(error, data) {
     // Analize data row by row
     data.forEach(function (d) {
         if(d.edad <= 30) {
-            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('<= 30 Age') }
-            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('<= 30 Age')}
-            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('<= 30 Age')}
-            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('<= 30 Age')}
+            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('<= 30 Years') }
+            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('<= 30 Years')}
+            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('<= 30 Years')}
+            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('<= 30 Years')}
         } else if (d.edad > 30 && d.edad <= 45) {
-            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 30 & <= 45 Age')}
-            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 30 & <= 45 Age')}
-            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 30 & <= 45 Age')}
-            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 30 & <= 45 Age')}
+            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 30 & <= 45 Years')}
+            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 30 & <= 45 Years')}
+            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 30 & <= 45 Years')}
+            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 30 & <= 45 Years')}
         } else if (d.edad > 45 && d.edad <= 60) {
-            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 45 & <= 60 Age')}
-            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 45 & <= 60 Age')}
-            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 45 & <= 60 Age')}
-            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 45 & <= 60 Age')}
+            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 45 & <= 60 Years')}
+            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 45 & <= 60 Years')}
+            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 45 & <= 60 Years')}
+            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 45 & <= 60 Years')}
         } else if (d.edad > 60 && d.edad <= 75) {
-            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 60 & <= 75 Age')}
-            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 60 & <= 75 Age')}
-            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 60 & <= 75 Age')}
-            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 60 & <= 75 Age')}
+            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 60 & <= 75 Years')}
+            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 60 & <= 75 Years')}
+            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 60 & <= 75 Years')}
+            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 60 & <= 75 Years')}
         } else if (d.edad > 76 && d.edad <= 100) {
-            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 75 & <= 100 Age')}
-            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 75 & <= 100 Age')}
-            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 75 & <= 100 Age')}
-            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 75 & <= 100 Age')}
+            if(d.est_socio == 1) { rent[0].push(d.pago_renta); age[0].push('> 75 & <= 100 Years')}
+            if(d.est_socio == 2) { rent[1].push(d.pago_renta); age[1].push('> 75 & <= 100 Years')}
+            if(d.est_socio == 3) { rent[2].push(d.pago_renta); age[2].push('> 75 & <= 100 Years')}
+            if(d.est_socio == 4) { rent[3].push(d.pago_renta); age[3].push('> 75 & <= 100 Years')}
         }
       });
     // Group by status
