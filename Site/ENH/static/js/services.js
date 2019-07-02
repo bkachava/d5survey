@@ -220,13 +220,13 @@ function updateStates(level) {
             break;
         case "high":
                 myChart.defaultColors = [
-                    new dimple.color("#e5f5f9", "#888"), 
-                    new dimple.color("#ccece6", "#888"), 
-                    new dimple.color("#66c2a4", "#888"), 
-                    new dimple.color("#8c96c6", "#888"), 
-                    new dimple.color("#41ae76", "#888"), 
-                    new dimple.color("#238b45", "#888"), 
-                    new dimple.color("#006d2c", "#888") 
+                    new dimple.color("#2c8147", "#888"), 
+                    new dimple.color("#cff24d", "#888"), 
+                    new dimple.color("#3bdf78", "#888"), 
+                    new dimple.color("#8ceac6", "#888"), 
+                    new dimple.color("#ffe67f", "#888"), 
+                    new dimple.color("#46f1df", "#888"), 
+                    new dimple.color("#8fdfda", "#888") 
                     ];
             break;
         default:
