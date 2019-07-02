@@ -177,7 +177,7 @@ L.geoJson(puejson, {
 //----------------------------------------------------//
 
 // Load coordinates data from map_mun_coordinates.csv
-d3.csv("map_mun_coordinates.csv", function(error, coord) {
+d3.csv("../static/geo_jsons/map_mun_coordinates.csv", function(error, coord) {
   
   var markers = L.markerClusterGroup();
   
