@@ -49,6 +49,7 @@ The sample includes the information gathered in 2017 for urban and rural areas, 
 was 64,000 living spaces and the total records for the Megalopolis is 12,295.
 
 Our exploratory data analysis will be used to enlighten the current situation of these 
-states on topics like .....
+Mexican states on topics like housing, education and information and communications 
+technologies. 
 
 [Source](https://www.inegi.org.mx/programas/enh/2017/)
