@@ -1,5 +1,4 @@
 # Team D5 - Project 2
-----
 
 ### Summary
 
@@ -51,5 +50,3 @@ The sample includes the information gathered in 2017 for urban and rural areas, 
 was 64,000 living spaces and the total records for the Megalopolis is 12,295.
 
 [Source](https://www.inegi.org.mx/programas/enh/2017/)
-
----
