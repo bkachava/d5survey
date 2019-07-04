@@ -52,8 +52,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
             yValueFormatString: "#,##0\"%\"",
             dataPoints: [
               { y: 26, label: "Low"},
-              { y: 15, label: "Medium Low"},
-              { y: 9, label: "Medium High"},
+              { y: 15, label: "Medium low"},
+              { y: 9, label: "Medium high"},
               { y: 8, label: "High"}
                 
             ]
