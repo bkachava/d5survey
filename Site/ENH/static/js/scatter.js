@@ -1,6 +1,6 @@
 // Global Variables
 var estatus = ['Low','Medium low','Medium high','High'];
-var Colors = ['#F39C12','#3498DB','#95a5a6','#008080'];
+var Colors = ['#F39C12','#3498DB','#74898b','#008080'];
 
 // Create data to create the graph
 function getData(points) {
