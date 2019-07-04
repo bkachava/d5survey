@@ -28,6 +28,7 @@ Base.prepare(db.engine, reflect=True)
 Services = Base.classes.services
 Stservices = Base.classes.stservices
 Rent = Base.classes.rent
+Gender = Base.classes.gender
 
 # Route to render index.html 
 @app.route("/")
@@ -54,7 +55,7 @@ def mappage():
 
 
 # Route to render literacy.html 
-@app.route("/literacy")
+@app.route("/gender")
 def litpage():
     return render_template("literacy.html")
 
@@ -144,6 +145,33 @@ def rentByAge():
 
     return jsonify(rent_list)
 
+# Query the database and send the jsonified results for Gender
+@app.route("/gender/ByState")
+def genByState():
+    """Return the gender by state."""
+    sel = [
+        Gender.state,
+        Gender.group,
+        Gender.axis,
+        Gender.value,
+        Gender.description
+   ]
+    # Query the table with filter
+    results = db.session.query(*sel).all()
+
+    # Create a  list entry for each row
+    gender_list = []
+    for result in results:
+        gender_data = {
+            "state" : result[0],
+            "group" : result[1],
+            "axis" : result[2],
+            "value" : result[3],
+            "description" : result[4],
+        }
+        gender_list.append(gender_data)
+
+    return jsonify(gender_list)
 
 # Init app
 if __name__ == "__main__":
