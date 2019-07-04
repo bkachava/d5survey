@@ -10,8 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -34,27 +35,63 @@
     <h3 class="text-center">National Household Survey 2017</h3>
     <div class="row">
       <div class="col-md-12 text-center">
-        <p class="text-right"><a href="/rent/ByAge">Get data</a></p>
+        <p style="text-align:left;"><a id="report" href="#" onclick="PopUp()">Create Report</a>
+          <span style="float:right;">
+              <a href="/rent/ByAge">Get data</a>
+          </span>      
+        </p>
+      <h5 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h5>
+      <h6>Scatter Representation</h6>
+      <canvas id="canvas" width="800" height="400" hidden ></canvas> 
+      <div id="png-container" hidden></div>
+      <img id="png-export" hidden ></img>
+      <div id="chart">
+      </div>
+    </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12 text-center">
+        <p></p><p></p>
         <h5 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h5>
-        <h6>Scatter Representation</h6>
-        <div id="chart">
-          <svg></svg>
-        </div>
+        <h6>Boxplot Grouped Representation</h6>
+        <div class="boxPlot" id="boxPlot"></div>
+        <img id="jpg-export" hidden></img>
       </div>
      </div>
      <div class="row">
-       <div class="col-md-12 text-center">
-         <p></p><p></p>
-         <h5 class="text-center text-info">Megalopolis Rent by Age and Socioeconomic Level</h5>
-         <h6>Boxplot Grouped Representation</h6>
-         <div class="boxPlot" id="boxPlot"></div>
-       </div>
-     </div>
-  </div>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.js"></script>
-  <script src="{{ url_for('static', filename='js/scatter.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/boxPlot.js') }}"></script>
+      <div class="col-md-12 text-center">
+         <button class="open-button" onclick="openForm()">Survey</button>
+         <div class="form-popup" id="form">
+           <form action="/rent/Insert" class="form-container" method="POST">
+             <h3>Survey</h3>
+             <label for="pago_renta"><b>How much rent do you pay?</b></label>
+             <input type="number" placeholder="Enter rent" name="pago_renta" required>
+         
+             <label for="est_socio"><b>Which Socioeconomic Level do you have?</b></label>
+             <select name="est_socio">
+                 <option value="1">Low</option>
+                 <option value="2">Medium Low</option>
+                 <option value="3">Medium High</option>
+                 <option value="4">High</option>
+               </select>
+             <label for="edad"><b> How old are you? </b></label>
+             <br>
+             <input type="number" placeholder="Enter your age" name="edad" required>
+             <br>
+             <button type="submit" class="btn">Send</button>
+             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+             <input type="number" name="id" hidden value="1">
+             <input type="number" name="folioviv" hidden value="1">
+             <input type="number" name="tenencia" hidden value="1">
+             <input type="number" name="parentesco" hidden value="1">
+           </form>
+         </div>
+      </div>
+    </div>
+ </div>
+ <script src="https://d3js.org/d3.v4.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js"></script>  
+ <script src="{{ url_for('static', filename='js/scatter.js') }}"></script>
+ <script src="{{ url_for('static', filename='js/boxPlot.js') }}"></script>
 </body>
 </html>

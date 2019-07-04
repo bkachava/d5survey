@@ -1,12 +1,13 @@
 # Se importan las dependencias
 import os
+import base64
 import sqlalchemy
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from sqlalchemy.ext.automap import automap_base
 from flask import Flask, render_template, jsonify, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_mail import Mail, Message
 
 # Flask Setup 
 app = Flask(__name__)
@@ -17,6 +18,10 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL","") or "sqlite:///db/enh.sqlite"
 db = SQLAlchemy(app)
+app.config.from_pyfile(os.path.join(".", "config/app.conf"), silent=False)
+
+# Create the model
+from .models import Rent
 
 # Reflect database into a new model
 Base = automap_base()
@@ -173,6 +178,72 @@ def genByState():
 
     return jsonify(gender_list)
 
+# Query the database and send the jsonified results
+@app.route("/rent/Insert", methods=["POST"])
+def rentInsert():
+    """Insert the rent by age."""
+    if request.method == "POST":
+        folioviv = request.form["folioviv"]
+        tenencia = request.form["tenencia"]
+        pago_renta = request.form["pago_renta"]
+        est_socio = request.form["est_socio"]
+        edad = request.form["edad"]
+        parentesco = request.form["parentesco"]
+        
+        viv = Rent(folioviv=folioviv, tenencia=tenencia, pago_renta=pago_renta, est_socio=est_socio, edad=edad, parentesco=parentesco )
+        db.session.add(viv)
+        db.session.commit()
+        return render_template("rent.html")
+
+    # Create a  list entry for each row
+    rent_list = []
+    for result in results:
+        rent_data = {
+            "" : result[0],
+            "" : result[1],
+            "" : result[2],
+            "" : result[3],
+            "" : result[4],
+            "" : result[5]
+        }
+        rent_list.append(rent_data)
+
+    return jsonify(rent_list)
+
+#################################################
+# SMTP 
+#################################################
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": app.config.get("MAIL_USERNAME"),
+    "MAIL_PASSWORD": app.config.get("MAIL_PASSWORD")
+}
+app.config.update(mail_settings)
+mail = Mail(app)
+
+# Query the database and send the jsonified results
+@app.route("/rent/SendMail", methods=["GET", "POST"])
+def send():
+    if request.method == "POST":
+        with app.app_context():
+            scatter = request.form["scatter"]
+            boxPlot = request.form["boxPlot"]
+            email = request.form["email"]
+            
+            msg = Message(subject="National Household Survey 2017",
+                sender= app.config.get("MAIL_USERNAME"),
+                recipients=[email],
+                html = render_template('Plantilla.html'))
+            
+            msg.attach("boxPlot.png", "png/Image", base64.decodebytes(boxPlot.encode()),  headers=[['Content-ID', '<boxPlot>'],] )
+            msg.attach("scatter.png", "png/Image", base64.decodebytes(scatter.encode()),  headers=[['Content-ID', '<scatter>'],] )
+            mail.send(msg)
+            return redirect("/rent", code=302)
+        return render_template("form.html")
+        
 # Init app
 if __name__ == "__main__":
     app.run()

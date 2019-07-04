@@ -1,3 +1,57 @@
+// Open form to fill survey
+function openForm() {
+    document.getElementById("form").style.display = "block";
+  }
+  // Close form to fill survey
+  function closeForm() {
+    document.getElementById("form").style.display = "none";
+  }
+// Create PopUp to send e-mail
+function PopUp() {
+    // Save image
+    //canvasImg();
+    // Create sweet message
+  swal({
+      title: "Are you sure that you want to create a report?",
+      text: "The information contained in these documents is confidential ",
+      icon: "warning",
+      buttons: true,
+      textAlign: "center",
+      dangerMode: true,
+    })
+    .then((willCreate) => {
+      // Conditional 
+      if (willCreate) {
+          swal("Insert your e-mail:", {
+              content: "input",
+            })
+            .then((value) => {            
+              scatter = d3.select('#png-export').attr('src').replace("data:image/png;base64", "");
+              boxPlot = d3.select('#jpg-export').attr('src').replace("data:image/png;base64,", "");
+              sendMail(value, scatter, boxPlot );
+              swal(`Your report was sending by e-mail! ${value}`, {
+                  icon: "success",
+                });
+            });
+      } else {
+        swal("You don't create the report!");
+      }
+    });
+  }
+   
+// Send email
+function sendMail(correo, gScatter, sBoxPlot) {
+    $.post("/rent/SendMail",
+    {
+      email: correo,
+      boxPlot: sBoxPlot,
+      scatter: gScatter
+    },
+    function(data,status){
+  
+    });
+  }
+  
 // Create variables X and Y
 var rent = [];
 var age = [];
@@ -57,4 +111,18 @@ d3.json("/rent/ByAge", function(error, data) {
     // Print in plotly
     Plotly.newPlot('boxPlot', fields, layout);
 
+    // Save image
+    var img_jpg = d3.select('#jpg-export');
+    Plotly.newPlot('boxPlot', fields, layout).then(
+        function(gd)
+        {
+            Plotly.toImage(gd,{height:600,width:1000})
+               .then(
+                   function(url)
+               {
+                   img_jpg.attr("src", url);
+                   return Plotly.toImage(gd,{format:'jpeg',height:400,width:400});
+               }
+        )
+    });
 });
