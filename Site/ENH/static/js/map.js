@@ -176,6 +176,13 @@ L.geoJson(puejson, {
 // Create a new marker cluster group
 //----------------------------------------------------//
 
+//Create house icon 
+var houseIcon = L.icon({
+  iconUrl: '../static/css/house.png',
+  iconSize: [35,35]
+});
+
+
 // Load coordinates data from map_mun_coordinates.csv
 d3.csv("../static/geo_jsons/map_mun_coordinates.csv", function(error, coord) {
   
@@ -184,13 +191,13 @@ d3.csv("../static/geo_jsons/map_mun_coordinates.csv", function(error, coord) {
   // Log an error if one exists
   if (error) return console.warn(error);
 
-  // Cast the hours value to a number for each piece of tvData
+  // Loop for filling our markers variable
   coord.forEach(function(data) {
     data.latitude = +data.latitude;
     data.longitude = +data.longitude;
 
     //Fill our markers
-    markers.addLayer(L.marker([data.latitude, data.longitude])
+    markers.addLayer(L.marker([data.latitude, data.longitude], {icon: houseIcon})
     .bindPopup(data.municipality_name));
 
     // Add our marker cluster layer to the map
