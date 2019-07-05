@@ -129,7 +129,7 @@ def stateservices(level, type):
                 "Level" : result[0],
                 "Services" : result[1],
                 "State" : result[2],
-                "Yes Percentage" : round(result[3] / (result[3] + result[4]) * 100)
+                "Yes Percent" : round(result[3] / (result[3] + result[4]) * 100)
             }
             serv_list.append(service_data)
 

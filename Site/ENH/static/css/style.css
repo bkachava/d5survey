@@ -135,3 +135,70 @@ html{
     fill-opacity: 0.9 !important;
     stroke-opacity: 0.9 !important;
   }
+
+  .nav-pills .pill-1 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-2 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-3 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-4 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-5 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-6 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-7 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-8 .nav-link:not(.active) {
+    background-color:  white;
+    color: gray;
+  }
+  .nav-pills .pill-1 .nav-link {
+    background-color:  #3498DB;
+    color: white;
+  }
+  .nav-pills .pill-2 .nav-link {
+    background-color:  #3498DB;
+  }
+  .nav-pills .pill-3 .nav-link {
+    background-color:  #3498DB;
+    color: white;
+  }
+  .nav-pills .pill-4 .nav-link {
+    background-color:  #3498DB;
+    color: white;
+  }
+  .nav-pills .pill-5 .nav-link {
+    background-color:  #3498DB;    
+    color: white;
+  }
+  .nav-pills .pill-6 .nav-link {
+    background-color:  #3498DB;    
+    color: white;
+  }
+  .nav-pills .pill-7 .nav-link {
+    background-color:  #3498DB;    
+    color: white;
+  }
+  .nav-pills .pill-8 .nav-link {
+    background-color:  #3498DB;    
+    color: white;
+  }
+  .tab-content  {
+    overflow: auto;
+  } 

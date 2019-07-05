@@ -287,7 +287,7 @@ function updateServices(level) {
       var column = "";
       if (document.getElementById('bypercent').checked) {
           type ="percent";
-          column = "Yes Percentage";
+          column = "Yes Percent";
       }
       else {
           type = "count";
