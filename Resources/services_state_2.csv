@@ -1,0 +1,176 @@
+level,services,state,yes_cnt,no_cnt
+all,Computer,Ciudad de Mexico,970,806
+all,Computer,Hidalgo,489,1232
+all,Computer,Mexico ,650,1178
+all,Computer,Morelos,545,1087
+all,Computer,Puebla,499,1198
+all,Computer,Queretaro,765,1065
+all,Computer,Tlaxcala,511,1300
+all,Internet,Ciudad de Mexico,1281,495
+all,Internet,Hidalgo,464,1257
+all,Internet,Mexico ,817,1011
+all,Internet,Morelos,764,868
+all,Internet,Puebla,552,1145
+all,Internet,Queretaro,877,953
+all,Internet,Tlaxcala,501,1310
+all,Fixed-line phone,Ciudad de Mexico,1226,550
+all,Fixed-line phone,Hidalgo,420,1301
+all,Fixed-line phone,Mexico ,842,986
+all,Fixed-line phone,Morelos,743,889
+all,Fixed-line phone,Puebla,515,1182
+all,Fixed-line phone,Queretaro,671,1159
+all,Fixed-line phone,Tlaxcala,467,1344
+all,Cel phone,Ciudad de Mexico,1643,133
+all,Cel phone,Hidalgo,1424,297
+all,Cel phone,Mexico ,1668,160
+all,Cel phone,Morelos,1435,197
+all,Cel phone,Puebla,1391,306
+all,Cel phone,Queretaro,1668,162
+all,Cel phone,Tlaxcala,1613,198
+all,Pay  TV,Ciudad de Mexico,812,964
+all,Pay  TV,Hidalgo,849,872
+all,Pay  TV,Mexico ,656,1172
+all,Pay  TV,Morelos,723,909
+all,Pay  TV,Puebla,648,1049
+all,Pay  TV,Queretaro,1082,748
+all,Pay  TV,Tlaxcala,865,946
+low,Computer,Ciudad de Mexico,0,5
+low,Computer,Hidalgo,38,423
+low,Computer,Mexico ,14,150
+low,Computer,Morelos,25,173
+low,Computer,Puebla,45,531
+low,Computer,Queretaro,37,291
+low,Computer,Tlaxcala,3,86
+low,Internet,Ciudad de Mexico,0,5
+low,Internet,Hidalgo,29,432
+low,Internet,Mexico ,12,152
+low,Internet,Morelos,30,168
+low,Internet,Puebla,39,537
+low,Internet,Queretaro,23,305
+low,Internet,Tlaxcala,0,89
+low,Fixed-line phone,Ciudad de Mexico,1,4
+low,Fixed-line phone,Hidalgo,53,408
+low,Fixed-line phone,Mexico ,6,158
+low,Fixed-line phone,Morelos,41,157
+low,Fixed-line phone,Puebla,77,499
+low,Fixed-line phone,Queretaro,30,298
+low,Fixed-line phone,Tlaxcala,1,88
+low,Cel phone,Ciudad de Mexico,5,0
+low,Cel phone,Hidalgo,310,151
+low,Cel phone,Mexico ,143,21
+low,Cel phone,Morelos,159,39
+low,Cel phone,Puebla,392,184
+low,Cel phone,Queretaro,246,82
+low,Cel phone,Tlaxcala,80,9
+low,Pay  TV,Ciudad de Mexico,0,5
+low,Pay  TV,Hidalgo,188,273
+low,Pay  TV,Mexico ,29,135
+low,Pay  TV,Morelos,38,160
+low,Pay  TV,Puebla,161,415
+low,Pay  TV,Queretaro,106,222
+low,Pay  TV,Tlaxcala,12,77
+mdlow,Computer,Ciudad de Mexico,282,446
+mdlow,Computer,Hidalgo,335,746
+mdlow,Computer,Mexico ,358,812
+mdlow,Computer,Morelos,345,791
+mdlow,Computer,Puebla,252,560
+mdlow,Computer,Queretaro,259,571
+mdlow,Computer,Tlaxcala,396,1125
+mdlow,Internet,Ciudad de Mexico,449,279
+mdlow,Internet,Hidalgo,318,763
+mdlow,Internet,Mexico ,462,708
+mdlow,Internet,Morelos,517,619
+mdlow,Internet,Puebla,309,503
+mdlow,Internet,Queretaro,326,504
+mdlow,Internet,Tlaxcala,394,1127
+mdlow,Fixed-line phone,Ciudad de Mexico,427,301
+mdlow,Fixed-line phone,Hidalgo,258,823
+mdlow,Fixed-line phone,Mexico ,480,690
+mdlow,Fixed-line phone,Morelos,501,635
+mdlow,Fixed-line phone,Puebla,261,551
+mdlow,Fixed-line phone,Queretaro,205,625
+mdlow,Fixed-line phone,Tlaxcala,378,1143
+mdlow,Cel phone,Ciudad de Mexico,666,62
+mdlow,Cel phone,Hidalgo,949,132
+mdlow,Cel phone,Mexico ,1050,120
+mdlow,Cel phone,Morelos,993,143
+mdlow,Cel phone,Puebla,703,109
+mdlow,Cel phone,Queretaro,770,60
+mdlow,Cel phone,Tlaxcala,1343,178
+mdlow,Pay  TV,Ciudad de Mexico,243,485
+mdlow,Pay  TV,Hidalgo,533,548
+mdlow,Pay  TV,Mexico ,360,810
+mdlow,Pay  TV,Morelos,490,646
+mdlow,Pay  TV,Puebla,322,490
+mdlow,Pay  TV,Queretaro,477,353
+mdlow,Pay  TV,Tlaxcala,713,808
+mdhigh,Computer,Ciudad de Mexico,491,304
+mdhigh,Computer,Hidalgo,61,38
+mdhigh,Computer,Mexico ,147,156
+mdhigh,Computer,Morelos,131,107
+mdhigh,Computer,Puebla,127,92
+mdhigh,Computer,Queretaro,238,152
+mdhigh,Computer,Tlaxcala,64,64
+mdhigh,Internet,Ciudad de Mexico,613,182
+mdhigh,Internet,Hidalgo,58,41
+mdhigh,Internet,Mexico ,194,109
+mdhigh,Internet,Morelos,167,71
+mdhigh,Internet,Puebla,130,89
+mdhigh,Internet,Queretaro,282,108
+mdhigh,Internet,Tlaxcala,67,61
+mdhigh,Fixed-line phone,Ciudad de Mexico,588,207
+mdhigh,Fixed-line phone,Hidalgo,58,41
+mdhigh,Fixed-line phone,Mexico ,208,95
+mdhigh,Fixed-line phone,Morelos,152,86
+mdhigh,Fixed-line phone,Puebla,116,103
+mdhigh,Fixed-line phone,Queretaro,230,160
+mdhigh,Fixed-line phone,Tlaxcala,55,73
+mdhigh,Cel phone,Ciudad de Mexico,736,59
+mdhigh,Cel phone,Hidalgo,90,9
+mdhigh,Cel phone,Mexico ,289,14
+mdhigh,Cel phone,Morelos,223,15
+mdhigh,Cel phone,Puebla,208,11
+mdhigh,Cel phone,Queretaro,375,15
+mdhigh,Cel phone,Tlaxcala,120,8
+mdhigh,Pay  TV,Ciudad de Mexico,394,401
+mdhigh,Pay  TV,Hidalgo,64,35
+mdhigh,Pay  TV,Mexico ,144,159
+mdhigh,Pay  TV,Morelos,146,92
+mdhigh,Pay  TV,Puebla,108,111
+mdhigh,Pay  TV,Queretaro,278,112
+mdhigh,Pay  TV,Tlaxcala,94,34
+high,Computer,Ciudad de Mexico,197,51
+high,Computer,Hidalgo,55,25
+high,Computer,Mexico ,131,60
+high,Computer,Morelos,44,16
+high,Computer,Puebla,75,15
+high,Computer,Queretaro,231,51
+high,Computer,Tlaxcala,48,25
+high,Internet,Ciudad de Mexico,219,29
+high,Internet,Hidalgo,59,21
+high,Internet,Mexico ,149,42
+high,Internet,Morelos,50,10
+high,Internet,Puebla,74,16
+high,Internet,Queretaro,246,36
+high,Internet,Tlaxcala,40,33
+high,Fixed-line phone,Ciudad de Mexico,210,38
+high,Fixed-line phone,Hidalgo,51,29
+high,Fixed-line phone,Mexico ,148,43
+high,Fixed-line phone,Morelos,49,11
+high,Fixed-line phone,Puebla,61,29
+high,Fixed-line phone,Queretaro,206,76
+high,Fixed-line phone,Tlaxcala,33,40
+high,Cel phone,Ciudad de Mexico,236,12
+high,Cel phone,Hidalgo,75,5
+high,Cel phone,Mexico ,186,5
+high,Cel phone,Morelos,60,0
+high,Cel phone,Puebla,88,2
+high,Cel phone,Queretaro,277,5
+high,Cel phone,Tlaxcala,70,3
+high,Pay  TV,Ciudad de Mexico,175,73
+high,Pay  TV,Hidalgo,64,16
+high,Pay  TV,Mexico ,123,68
+high,Pay  TV,Morelos,49,11
+high,Pay  TV,Puebla,57,33
+high,Pay  TV,Queretaro,221,61
+high,Pay  TV,Tlaxcala,46,27
