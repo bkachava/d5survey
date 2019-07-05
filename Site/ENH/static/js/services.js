@@ -1,300 +1,331 @@
-
 // beginGraph Services Percentages (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
 function updateServices(level) {
    
     var url = "/services/" + level;
-
+    // load and handle the data
     d3.json(url, function (data) {
+      
+      var lcolors = [];
+      var svgArea = d3.select("#percServ").select("svg");
+      if (!svgArea.empty()) {
+          svgArea.remove();
+        }
   
-        var key = ["yes_cnt", "no_cnt"];
-        var labels = ["Yes", "No"];
-        var colors = [];
-
-        var svgArea = d3.select("#percServ").select("svg");
-        if (!svgArea.empty()) {
-            svgArea.remove();
-        }
-        d3.selectAll("a.btn").classed("active",false);
-        switch(level)
-        {
-        case "low": 
-            colors = ['#F39C12','#fcebcf'];
-            d3.select("a.btn.btn-outline-warning").classed("active",true);
-            break;
-        case "mdlow":
-            colors = ['#3498DB',' #d4e9f7'];
-            d3.select("a.btn.btn-outline-info").classed("active",true);
-            break;
-        case "mdhigh":
-            colors = ['#95a5a6',' #c7d0d1'];
-            d3.select("a.btn.btn-outline-secondary").classed("active",true);
-            break;
-        case "high":           
-            colors = ['#008080','#8ef0dd'];
-            d3.select("a.btn.btn-outline-success").classed("active",true);
-            break;
-        default:
-            colors = ['#7b99b7','#bdccdb'];
-            d3.select("a.btn.btn-outline-primary").classed("active",true);
-        }
-
-        var initStackedBarChart = {
-            draw: function(config) {
-                me = this,
-                domEle = config.element,
-                stackKey = config.key,
-                data = config.data,
-                margin = {top: 20, right: 20, bottom: 30, left: 100},
-                width = 500 - margin.left - margin.right,
-                height = 320 - margin.top - margin.bottom,
-                xScale = d3.scaleLinear().rangeRound([0, width]),
-                yScale = d3.scaleBand().rangeRound([height, 0]).padding(0.1),
-                color = d3.scaleOrdinal(colors),   
-                xAxis = d3.axisBottom(xScale),
-                yAxis =  d3.axisLeft(yScale),
-                svg = d3.select("#"+domEle).append("svg")
-                        .attr("width", width + margin.left + margin.right)
-                        .attr("height", height + margin.top + margin.bottom)
-                        .append("g")
-                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        
-                var stack = d3.stack()
-                    .keys(stackKey)
-                    .offset(d3.stackOffsetNone);
-            
-                var layers = stack(data);
-                    data.sort(function(a, b) { return b.total - a.total; });
-                    yScale.domain(data.map(function(d) { return d.item; }));
-                    xScale.domain([0, 100]).nice();
-    
-                var layer = svg.selectAll(".layer")
-                    .data(layers)
-                    .enter().append("g")
-                    .attr("class", "layer")
-                    .style("fill", function(d, i) { return color(i); });
-        
-                layer.selectAll("rect")
-                    .data(function(d) { return d; })
-                    .enter().append("rect")
-                    .transition()
-                    .delay(400)
-                    .duration(900)
-                    .attr("y", function(d) { return yScale(d.data.item); })
-                    .attr("x", function(d) { return xScale(d[0]); })
-                    .attr("height", yScale.bandwidth())
-                    .attr("width", function(d) { return xScale(d[1]) - xScale(d[0]) });
-        
-                layer.selectAll("text")
-                    .data(function (d) {
-                        return d;
-                    })
-                    .enter().append("text")
-                    .classed("label", true)
-                    .transition()
-                    .delay(650)
-                    .duration(1200)
-                    .attr("y", function (d) {
-                        return yScale(d.data.item) + 20;
-                    })
-                    .attr("x", function (d) {
-                        return xScale(d[0]) - 20;
-                    })
-                    .text(function (d) {
-                        if (d[0] > 0) {
-                            return d[0];
-                        }
-                    });
-
-                    svg.append("g")
-                    .attr("class", "axis axis--x")
-                    .attr("transform", "translate(0," + (height+5) + ")")
-                    .call(xAxis);
-        
-                    svg.append("g")
-                    .attr("class", "axis axis--y")
-                    .attr("transform", "translate(0,0)")
-                    .call(yAxis);							
-
-                    
-                var legend = svg.selectAll(".legend")
-                    .data(layers)
-                    .enter()
-                    .append("g");
-
-                legend.append("rect")
-                    .attr("fill", function (d, i) {
-                        return colors[i];
-                    })
-                    .attr("width", 10)
-                    .attr("height", 10)
-                    .attr("y", -10)
-                    .attr("x", function (d, i) {
-                        return (i * (width /2)) + 10;
-                    }) ;
-
-                legend.append("text")
-                    .classed("label", true)
-                    .attr("y", -3)
-                    .attr("x", function (d, i) {
-                        return (i * (width /2)) + 25;
-                    })
-                    .text(function (d, i) {
-                        return labels[i] +  "(%)";
-                    });
-            }
-        }
-        
-        initStackedBarChart.draw({
-            data: data,
-            key: key,
-            element: 'percServ'
-        });
-
-        updateStates(level);
-
-        updateLabels(level);
-
-    });
-    
-    return false;
-}
-// endGraph Services Percentages (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
-
-// beginGraph Services by State (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
-function updateStates(level) {
-
-    var svgArea = d3.select("#stateServ").select("svg");
-    if (!svgArea.empty()) {
-        svgArea.remove();
-    }
-
-    var svg = dimple.newSvg("#stateServ", 580, 350);
-    var url = "/servicesByState/" + level;
-
-    d3.json(url, function (data) {
-
-      var myChart = new dimple.chart(svg, data);
-      myChart.setBounds(60, 30, 500, 255)
-      myChart.addCategoryAxis("x", ["Services", "State"]);
-      myChart.addMeasureAxis("y", "Yes Counter");
-      var s = myChart.addSeries("State", dimple.plot.bar);
-      s.stacked = false;
-      var myLegend = myChart.addLegend(60, 5, 510, 20, "right");
-      myLegend.verticalPadding = 3;
-      myLegend.fontFamily = "sans-serif";
-
+      d3.selectAll("a.btn").classed("active",false);
       switch(level)
-      {
-        case "low": 
-            myChart.defaultColors = [
-                new dimple.color("#ffeda0", "#888"), 
-                new dimple.color("#fed976", "#888"), 
-                new dimple.color("#feb24c", "#888"), 
-                new dimple.color("#fd8d3c", "#888"), 
-                new dimple.color("#fc4e2a", "#888"), 
-                new dimple.color("#e31a1c", "#888"), 
-                new dimple.color("#bd0026", "#888") 
-                ];
-            break;
-        case "mdlow":
-                myChart.defaultColors = [
-                    new dimple.color("#ece7f2", "#888"), 
-                    new dimple.color("#d0d1e6", "#888"), 
-                    new dimple.color("#a6bddb", "#888"), 
-                    new dimple.color("#74a9cf", "#888"), 
-                    new dimple.color("#3690c0", "#888"), 
-                    new dimple.color("#0570b0", "#888"), 
-                    new dimple.color("#045a8d", "#888") 
-                    ];
-            break;
-        case "mdhigh":
-                myChart.defaultColors = [
-                    new dimple.color("#efedf5", "#888"), 
-                    new dimple.color("#dadaeb", "#888"), 
-                    new dimple.color("#bcbddc", "#888"), 
-                    new dimple.color("#9e9ac8", "#888"), 
-                    new dimple.color("#807dba", "#888"), 
-                    new dimple.color("#6a51a3", "#888"), 
-                    new dimple.color("#54278f", "#888") 
-                    ];
-            break;
-        case "high":
-                myChart.defaultColors = [
-                    new dimple.color("#2c8147", "#888"), 
-                    new dimple.color("#cff24d", "#888"), 
-                    new dimple.color("#3bdf78", "#888"), 
-                    new dimple.color("#8ceac6", "#888"), 
-                    new dimple.color("#ffe67f", "#888"), 
-                    new dimple.color("#46f1df", "#888"), 
-                    new dimple.color("#8fdfda", "#888") 
-                    ];
-            break;
-        default:
-                myChart.defaultColors = [
-                    new dimple.color("#edf8fb", "#888"), 
-                    new dimple.color("#bfd3e6", "#888"), 
-                    new dimple.color("#9ebcda", "#888"), 
-                    new dimple.color("#8c96c6", "#888"), 
-                    new dimple.color("#8c6bb1", "#888"), 
-                    new dimple.color("#88419d", "#888"), 
-                    new dimple.color("#6e016b", "#888") 
-                    ];
+          {
+          case "low": 
+              lcolors = ['#F39C12','#fcebcf'];
+              d3.select("a.btn.btn-outline-warning").classed("active",true);
+              break;
+          case "mdlow":
+              lcolors = ['#3498DB',' #bedef3'];
+              d3.select("a.btn.btn-outline-info").classed("active",true);
+              break;
+          case "mdhigh":
+              lcolors = ['#95a5a6',' #c7d0d1'];
+              d3.select("a.btn.btn-outline-secondary").classed("active",true);
+              break;
+          case "high":           
+              lcolors = ['#008080','#8ef0dd'];
+              d3.select("a.btn.btn-outline-success").classed("active",true);
+              break;
+          default:
+              lcolors = ['#7b99b7','#bdccdb'];
+              d3.select("a.btn.btn-outline-primary").classed("active",true);
       }
-
-      myChart.draw();
-    });
-
-    return false;
-}
-// endGraph Services by State (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
-
-
-function updateLabels(level) {
-
-    let houses = [];
-    switch(level)
-    {
-    case "low": 
-        houses = ['1,821','5','461','164','198','576','328','89'];
-        break;
-    case "mdlow":
-        houses = ['7,278','728','1,081','1,170','1,136','812','830','1,521'];
-        break;
-    case "mdhigh":
-        houses = ['2,172','795','99','303','238','219','390','128'];
-        break;
-    case "high":           
-        houses = ['1,024','248','80','191','60','90','282','73'];
-        break;
-    default:
-        houses = ['12,295','1,776','1,721','1,828','1,632','1,697','1,830','1,811'];
-    }
-
-    let selection = d3.select("#tot");
-    // Use `.html("") to clear any existing metadata
-    selection.html("");
-    // Use d3 to append new tags for each value
-    selection.append("span").text("Living spaces - Total sample: ").classed("text-primary font-weight-bold", true);
-    selection.append("span").text(houses[0]).classed("text-info font-weight-bold", true);
-    selection.append("p");
-    selection.append("span").text("Ciudad de México: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[1]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - Hidalgo: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[2]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - México: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[3]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - Morelos: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[4]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - Puebla: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[5]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - Querétaro: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[6]).classed("text-info font-weight-bold", true);
-    selection.append("span").text(" - Tlaxcala: ").classed("text-muted font-weight-bold", true);
-    selection.append("span").text(houses[7]).classed("text-info font-weight-bold", true);
-    selection.append("p");
-}
-
-
+  
+      var margin = {top: 20, right: 20, bottom: 30, left: 100},
+          width = 500 - margin.left - margin.right,
+          height = 320 - margin.top - margin.bottom;
+  
+      var xscale = d3.scaleBand().rangeRound([0, width]).padding(0.1);
+      var yscale = d3.scaleLinear().rangeRound([height, 0]);
+      var colors = d3.scaleOrdinal().range(lcolors);
+  
+      var xaxis = d3.axisBottom(xscale);
+      var yaxis =  d3.axisLeft(yscale).tickFormat(d3.format(".0%"));
+  
+      var svg = d3.select("#percServ").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+      // rotate the data
+      var categories = d3.keys(data[0]).filter(function(key) { return key !== "Absolutes"; });
+      var parsedata = categories.map(function(name) { return { "Absolutes": name }; });
+  
+      data.forEach(function(d) {
+          parsedata.forEach(function(pd) {
+              pd[d["Absolutes"]] = d[pd["Absolutes"]];
+          });
+      });
+      
+      // map column headers to colors (except for 'Absolutes' and 'Base')
+      colors.domain(d3.keys(parsedata[0]).filter(function(key) { return key !== "Absolutes" && key !== "Base"; }));
+      
+      // add a 'responses' parameter to each row that has the height percentage values for each rect
+      parsedata.forEach(function(pd) {
+          var y0 = 0;
+          // colors.domain() is an array of the column headers (text)
+          // pd.responses will be an array of objects with the column header
+          // and the range of values it represents
+          pd.responses = colors.domain().map(function(response) {
+              var responseobj = {response: response, y0: y0, yp0: y0};
+              y0 += +pd[response];
+              responseobj.y1 = y0;
+              responseobj.yp1 = y0;
+              return responseobj;
+          });
+          // y0 is now the sum of all the values in the row for this category
+          // convert the range values to percentages
+          pd.responses.forEach(function(d) { d.yp0 /= y0; d.yp1 /= y0; });
+          // save the total
+          pd.totalresponses = pd.responses[pd.responses.length - 1].y1;
+      });
+      
+      // ordinal-ly map categories to x positions
+      xscale.domain(parsedata.map(function(d) { return d.Absolutes; }));
+      
+      // add the x axis and rotate its labels
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xaxis);
+  
+      // add the y axis
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yaxis);
+      
+      // create svg groups ("g") and place them
+      var category = svg.selectAll(".category")
+          .data(parsedata)
+          .enter().append("g")
+          .attr("class", "category")
+          .attr("transform", function(d) { return "translate(" + xscale(d.Absolutes) + ",0)"; });
+      
+      // draw the rects within the groups
+      category.selectAll("rect")
+          .data(function(d) { return d.responses; })
+          .enter().append("rect")
+          .attr("width", xscale.bandwidth())
+          .attr("y", height)
+          .attr("height", 0)
+          .transition()
+          .delay(200)
+          .duration(500)
+          .attr("y", function(d) { return yscale(d.yp1); })
+          .attr("height", function(d) { return yscale(d.yp0) - yscale(d.yp1); })
+          .style("fill", function(d) { return colors(d.response); });
+  
+      category.selectAll("text")
+          .data(function(d) { return d.responses; })
+          .enter().append("text")
+          .attr("width", xscale.bandwidth())
+          .classed("label", true)
+          .attr("y", height)
+          .attr("height", 0)
+          .transition()
+          .delay(350)
+          .duration(650)
+          .attr("x", xscale.bandwidth()/3)
+          .attr("y", function(d) { return yscale(d.yp1) + 20; })
+          .text(function (d) { 
+                  if (d.yp0 === 0) {
+                      return (parseFloat(d.yp1 * 100).toFixed(0)+"%");
+                  }
+             })  
+          .style("fill", '#ffffff');
+  
+      // position the legend elements
+      var legend = svg.selectAll(".legend")
+          .data(colors.domain())
+          .enter().append("g")
+          .attr("class", "label");
+  
+      legend.append("rect")
+          .attr("x", function(d, i) { return 100 + (i * 100); })
+          .attr("y", -20)
+          .attr("width", 10)
+          .attr("height", 10)
+          .style("fill", colors);
+  
+      legend.append("text")
+          .attr("x", function(d, i) { return 120 + (i * 100); })
+          .attr("y", -15)
+          .attr("dy", ".35em")
+          .style("text-anchor", "start")
+          .text(function(d) { return d; });
+      
+      // animation
+      d3.selectAll("input").on("change", handleFormClick);
+  
+      function handleFormClick() {
+      
+          if (document.getElementById('bypercent').checked) {
+              d3.select("#txtp").classed("text-secondary", false).classed("text-info", true);
+              d3.select("#txtn").classed("text-secondary", true).classed("text-info", false);
+              transitionPercent();
+          } else {
+              d3.select("#txtp").classed("text-secondary", true).classed("text-info", false);
+              d3.select("#txtn").classed("text-secondary", false).classed("text-info", true);
+               transitionCount();
+          }
+          updateStates(level);
+      }
+      
+      // transition to 'percent' presentation
+      function transitionPercent() {
+          // reset the yscale domain to default
+          yscale.domain([0, 1]);
+  
+          svg.selectAll(".category")
+              .selectAll("rect")
+              .attr("y", height)
+              .attr("height", 0)
+              .transition()
+              .duration(400)
+              .attr("y", function(d) { return yscale(d.yp1); })
+              .attr("height", function(d) { return yscale(d.yp0) - yscale(d.yp1); })
+              .style("fill", function(d) { return colors(d.response); });
+  
+  
+          category.selectAll("text")
+              .attr("x", xscale.bandwidth()/3)
+              .attr("y", height)
+              .attr("height", 0)
+              .transition()
+              .delay(350)
+              .duration(650)
+              .attr("y", function(d)  { return yscale(d.yp1) + 20; })
+              .text(function (d) { 
+                  if (d.yp0 === 0) {
+                      return (parseFloat(d.yp1 * 100).toFixed(0)+"%");
+                  } 
+              })  
+              .style("fill", '#ffffff');
+      
+  
+          // change the y-axis
+          // set the y axis tick format
+          yaxis.tickFormat(d3.format(".0%"));
+          svg.selectAll(".y.axis").call(yaxis);
+      }
+      
+      // transition to 'count' presentation
+      function transitionCount() {
+          // set the yscale domain
+          yscale.domain([0, d3.max(parsedata, function(d) { return d.totalresponses; })]);
+  
+          svg.selectAll(".category")
+          .selectAll("rect")
+          .attr("y", height)
+          .attr("height", 0)
+          .transition()
+          .duration(150)
+          .attr("y", function(d) { return this.getBBox().y + this.getBBox().height - (yscale(d.y0) - yscale(d.y1)) })
+          .attr("height", function(d) { return yscale(d.y0) - yscale(d.y1); })
+          .transition()
+           .delay(250)
+          .duration(250)
+          //.ease("bounce")
+          .attr("y", function(d) { return yscale(d.y1); })
+          .style("fill", function(d) { return colors(d.response); });
+  
+          // change the y-axis
+          // set the y axis tick format
+          yaxis.tickFormat(d3.format(""));   //.2s
+  
+          category.selectAll("text")
+          .attr("x", xscale.bandwidth()/4 - 7)
+          .attr("y", height)
+          .attr("height", 0)
+          .transition()
+          .delay(350)
+          .duration(650)
+          .attr("y", function(d) { return yscale(d.y1) + 20; })
+          .text(function (d) { 
+                  if (d.y0 === 0) {
+                      var parts = d.y1.toFixed(0).split(".");
+                      var num = parts[0].replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + 
+                          (parts[1] ? "." + parts[1] : "");
+                      return (num);
+                  }
+             })  
+          .style("fill", '#ffffff');
+  
+          svg.selectAll(".y.axis").call(yaxis);
+      }
+  
+      d3.select(self.frameElement).style("height", (height + margin.top + margin.bottom) + "px");	
+  
+      if (!document.getElementById('bypercent').checked) {
+          transitionCount();
+      }
+  
+      updateStates(level);
+  
+  });
+  
+  return false;
+  }
+  // endGraph Services Percentages (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
+  
+  
+  // beginGraph Services by State (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
+  function updateStates(level) {
+  
+      var svgArea = d3.select("#stateServ").select("svg");
+      if (!svgArea.empty()) {
+          svgArea.remove();
+      }
+  
+      var svg = dimple.newSvg("#stateServ", 580, 350);
+      var type = "";
+      var column = "";
+      if (document.getElementById('bypercent').checked) {
+          type ="percent";
+          column = "Yes Percentage";
+      }
+      else {
+          type = "count";
+          column = "Yes Counter";
+      }
+      var url = "/servicesByState/" + level + "/" + type; 
+  
+      d3.json(url, function (data) {
+  
+        var myChart = new dimple.chart(svg, data);
+        myChart.setBounds(60, 30, 500, 255)
+        var x = myChart.addCategoryAxis("x", ["Services", "State"]);
+        var myAxis = myChart.addMeasureAxis("y", column);
+        if (type === "count") {
+            myAxis.tickFormat = d3.format("");
+        }
+        else {
+          myAxis.tickFormat = d3.format(".0f");
+        }
+        
+        x.addOrderRule("Services");
+        x.addGroupOrderRule("Services", "State");
+  
+        var myLegend = myChart.addLegend(100, 1, 510, 20, "left");
+        myLegend.verticalPadding = 3;
+        myLegend.fontFamily = "sans-serif";
+        
+         var s = myChart.addSeries("State", dimple.plot.bar);
+          s.stacked = false;
+        s.addOrderRule("State");
+  
+        myChart.draw();
+      });
+  
+      return false;
+  }
+  // endGraph Services by State (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
+  
 // Call the function to present the Graphs Services (Computer, Fixed-line phone, Cel phone, Internet, Pay TV)  
 updateServices('all');
-
+  

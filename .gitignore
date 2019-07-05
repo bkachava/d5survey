@@ -10,3 +10,9 @@ Notebooks/.ipynb_checkpoints/data_mega_ENH_BD-checkpoint.ipynb
 Notebooks/.ipynb_checkpoints/data_ENH-checkpoint.ipynb
 Notebooks/.ipynb_checkpoints/data_cdmx_ENH-checkpoint.ipynb
 Notebooks/.ipynb_checkpoints/data_ENH-checkpoint.ipynb
+Site/ENH/static/js/config_APIKEY.js
+Site/ENH/static/js/data.tsv
+Site/ENH/db/4jul_enh.sqlite
+Site/ENH/static/js/x.tsv
+Site/ENH/db/joseenh.sqlite
+Site/ENH/joseapp.py
