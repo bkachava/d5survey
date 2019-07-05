@@ -2,7 +2,7 @@
 
 ### Summary
 
-__Python, HTML, CSS, Bootstrap, JavaScript, D3.js, Plotly.js, Leaflet, Dimple.js, NVD3.js, 
+__Python, HTML, CSS, Bootstrap, JavaScript, D3.js, Plotly.js, Leaflet, Dimple.js, NVD3.js, Canvas.js, 
 Flask with a SQLite database, and Heroku__, were used to build an interactive dashboard for 
 exploring the National Household Survey 2017.
 
