@@ -53,6 +53,10 @@ def rentpage():
 def mappage():
     return render_template("map.html")
 
+# Route to render literacy_stratum.html 
+@app.route("/literacy_stratum")
+def litspage():
+    return render_template("literacy_stratum.html")
 
 # Route to render literacy.html 
 @app.route("/gender")
