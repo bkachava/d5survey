@@ -266,7 +266,7 @@ def send():
             email = request.form["email"]
             
             msg = Message(subject="National Household Survey 2017",
-                sender= app.config.get("MAIL_USERNAME"),
+                sender= "d5surveybootcamp@gmail.com",
                 recipients=[email],
                 html = render_template('Plantilla.html'))
             
