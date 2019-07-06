@@ -249,8 +249,8 @@ mail_settings = {
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": app.config.get("MAIL_USERNAME"),
-    "MAIL_PASSWORD": app.config.get("MAIL_PASSWORD")
+    "MAIL_USERNAME": 'd5surveybootcamp',
+    "MAIL_PASSWORD": 'd5urvey1#d5urvey1#'
 }
 app.config.update(mail_settings)
 mail = Mail(app)
