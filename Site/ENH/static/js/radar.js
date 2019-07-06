@@ -51,6 +51,7 @@ var RadarChart = {
     // feed user configuration options
     if ("undefined" !== typeof options) {
       for (var i in options) {
+        console.log(i);
         if ("undefined" !== typeof options[i]) {
           config[i] = options[i];
         }

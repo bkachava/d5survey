@@ -53,7 +53,6 @@
       // function selectExample
       function selectExample(item) {
         var file = "static/csv/" + item + ".csv";
-        alert (file);
         $http.get(file).success(function(data) {
           ctrl.csv = data;
         });
@@ -79,6 +78,7 @@
         scope: false,
         link: function(scope, element, attrs) {
           var fn = $parse(attrs.onReadFile);
+          console.log(fn);
           element.on("change", function(onChangeEvent) {
             var reader = new FileReader();
             reader.onload = function(onLoadEvent) {
