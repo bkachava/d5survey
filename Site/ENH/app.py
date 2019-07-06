@@ -18,10 +18,11 @@ app = Flask(__name__)
 #################################################
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL","") or "sqlite:///db/enh.sqlite"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Create the model
-from .models import Rent
+# Create the model / ESTA LÍNEA MARCA ERROR
+# from .models import Rent
 
 # Reflect database into a new model
 Base = automap_base()
