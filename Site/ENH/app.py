@@ -22,7 +22,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Create the model / ESTA LÍNEA MARCA ERROR
- from .models import Rent
+from .models import Rent
 
 # Reflect database into a new model
 Base = automap_base()
